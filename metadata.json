@@ -1,0 +1,5 @@
+{
+  "name": "Analista Documental",
+  "description": "Una herramienta experta de análisis legal impulsada por Gemini. Sube contratos o textos legales para obtener una evaluación de riesgos, un resumen simple y clarificación de jerga compleja.",
+  "requestFramePermissions": []
+}

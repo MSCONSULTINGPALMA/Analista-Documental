@@ -1,0 +1,392 @@
+[
+  {
+    "id": 0,
+    "author": "user",
+    "payload": {
+      "type": "textWithMedia",
+      "text": "Rol: Eres un Abogado Senior y Experto en Análisis Legal con más de 20 años de experiencia en derecho civil, mercantil y contractual.\nObjetivo: Tu tarea es analizar documentos legales cargados por el usuario (c[][][]ontratos, sentencias, términos y condiciones) y proteger los i[]ntereses del usuario identificando riesgos.2356\nFormato de Salida[]:7 Debes responder siempre en formato Markdown limpio y estructurado.\nInstrucciones Específicas:\nResumen Ejecutivo: Inicia con un resumen de 1 párrafo explicándole a un niño de 10 años de qué trata el documento.\nAnálisis de Riesgos (El Semáforo): Analiza las cláusulas y clasifícalas:\n🔴 Cláusulas peligrosas, abusivas o inusuales (ej. renovaciones automáticas ocultas, penalizaciones desproporcionadas).ALERTA ROJA:\n🟡 Puntos que requieren negociación o aclaración.ALERTA AMARILLA:\n🟢 Cláusulas estándar y justas.LUZ VERDE:\nExplicación de Jerga: Si encuentras términos en latín o jerga jurídica densa, extráelos y explícalos en lenguaje llano.\nPreguntas Sugeridas: Al final, sugiere 3 preguntas que el usuario debería hacerle a la otra parte antes de firmar.\nTono: Profesional, objetivo, pero extremadamente clar[][]esita saber \"quién es\". Copia y pega este prompt maestro. Es probable que la app original use algo muy similar a esto:25\nRol: Eres un Abogado Senior y Experto en Análisis Legal con más de 20 años de experiencia en derecho civil, mercantil y contractual.\nObjetivo: Tu tarea es analizar documentos legales cargados por el usuario (contratos, sentencias, términos y condiciones) y proteger los intereses del usuario identificando riesgos.\nFormato de Salida: Debes responder siempre en formato Markdown limpio y estructurado.\nInstrucciones Específicas:\nResumen Ejecutivo: Inicia con un resumen de 1 párrafo explicándole a un niño de 10 años de qué trata el documento.\nAnálisis de Riesgos (El Semáforo): Analiza las cláusulas y clasifícalas:\n🔴 Cláusulas peligrosas, abusivas o inusuales (ej. renovaciones automáticas ocultas, penalizaciones desproporcionadas).ALERTA ROJA:\n🟡 Puntos que requieren negociación o aclaración.ALERTA AMARILLA:\n🟢 Cláusulas estándar y justas.LUZ VERDE:\nExplicación de Jerga: Si encuentras términos en latín o jerga jurídica densa, extráelos y explícalos en lenguaje llano.\nPreguntas Sugeridas: Al final, sugiere 3 preguntas que el usuario debería hacerle a la otra parte antes de firmar.\nTono: Profesional, objetivo, pero extremadamente clar[]esita saber \"quién es\". Copia y pega este prompt maestro. Es probable que la app original use algo muy similar a esto:1\nRol: Eres un Abogado Senior y Experto en Análisis Legal con más de 20 años de experiencia en derecho civil, mercantil y contractual.\nObjetivo: Tu tarea es analizar documentos legales cargados por el usuario (contratos, sentencias, términos y condiciones) y proteger los intereses del usuario identificando riesgos.\nFormato de Salida: Debes responder siempre en formato Markdown limpio y estructurado.\nInstrucciones Específicas:\nResumen Ejecutivo: Inicia con un resumen de 1 párrafo explicándole a un niño de 10 años de qué trata el documento.\nAnálisis de Riesgos (El Semáforo): Analiza las cláusulas y clasifícalas:\n🔴 Cláusulas peligrosas, abusivas o inusuales (ej. renovaciones automáticas ocultas, penalizaciones desproporcionadas).ALERTA ROJA:\n🟡 Puntos que requieren negociación o aclaración.ALERTA AMARILLA:\n🟢 Cláusulas estándar y justas.LUZ VERDE:\nExplicación de Jerga: Si encuentras términos en latín o jerga jurídica densa, extráelos y explícalos en lenguaje llano.\nPreguntas Sugeridas: Al final, sugiere 3 preguntas que el usuario debería hacerle a la otra parte antes de firmar.\nTono: Profesional, objetivo, pero extremadamente claro y protector hacia el usuario. No des consejo legal vinculante, sino análisis informativo.",
+      "files": [
+        {}
+      ],
+      "fileUploads": [],
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638010764
+  },
+  {
+    "id": 1,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Considering the Scope**\n\nI'm currently focused on defining the initial scope of \"Legal Eagle.\" My primary goal is to determine the core features that will resonate with a senior legal expert. Understanding their needs around contract analysis is paramount.  I'm exploring the potential for automated key term extraction and relevance ranking to speed up the process. I believe that integrating a user-friendly interface for input and visualization of the analysis will be crucial to its success.\n\n\n**Defining the Deliverables**\n\nI've been thinking about the structure of the output. I'm focusing on an executive summary in simple terms, a risk analysis visualized with a traffic light system, a jargon buster, and suggested questions. I'm also considering the technology stack; I'm leaning towards React with TypeScript and Tailwind CSS, and Google's Gemini API.\n\n\n\n**Revising API Selection**\n\nI've been reassessing the API choice for \"Legal Eagle,\" particularly the trade-off between speed and reasoning depth. While `gemini-3-pro-preview` initially seemed like the clear choice for \"complex\" tasks, I'm now leaning towards `gemini-2.5-flash` as the default for its speed and capability in text analysis. However, a user toggle might allow for \"Senior\" level analysis with `gemini-3-pro-preview` where available. The high context window of `gemini-2.5-flash` also gives it an advantage.\n\n\n**Refining Model Choice**\n\nI'm now zeroing in on the AI model strategy, specifically for complex text analysis. Considering the need for document processing, `gemini-3-pro-preview` feels like the best fit given its superior reasoning.  I'm also considering the user interface for text input, given that I can't do server-side PDF parsing in a client-side React app. So I'll permit image uploads and text pastes.\n\n\n**Constructing the Interface**\n\nI'm currently focused on the user interface components. I've visualized a drag-and-drop area for file uploads within `components/FileUpload.tsx`, and I'm designing the markdown renderer and \"Traffic Light\" visualization within `components/AnalysisResult.tsx`. A smooth \"reading\" animation is being considered for the `components/LoadingState.tsx` to enhance the user experience.\n\n\n**Optimizing Language Handling**\n\nI'm now prioritizing the language handling for \"Legal Eagle.\" I'm deciding between language-agnostic instructions and defaults based on the document. I prefer a flexible approach. I've chosen `gemini-2.5-flash` for its formatting fidelity and speed. I'm focusing on the `App.tsx` component, managing state for input and analysis results, and handling image conversion to base64. The system prompt will detect the language, and I'll modify the prompt to work for any user input.\n\n\n**Refining Language Strategy**\n\nI'm now prioritizing the language handling for \"Legal Eagle.\" I'm deciding between a universal approach or one specific to the document. I will detect the user's input language. If the provided prompt is Spanish, as in this case, I will apply the Spanish \"Persona\" instruction directly as the `systemInstruction`. This should ensure accurate responses in the correct tone and language, maintaining the English UI as standard. I'm focusing on the `services/geminiService.ts` to implement this.\n\n\n**Developing the Core UI**\n\nI'm currently building the UI components, focusing on reusability and efficiency. I've created a button component (`Button.tsx`) and a card container (`Card.tsx`) for layout flexibility. I'm actively working on the file uploader (`FileUploader.tsx`) with drag-and-drop functionality, and I'm developing the analysis display (`AnalysisDisplay.tsx`). For now, I will render the markdown response directly, using `whitespace-pre-wrap` for clean formatting, foregoing external libraries. The `App.tsx` component will handle state and overall layout. I'm aiming for a straightforward, efficient design.\n\n\n**Implementing Image Handling**\n\nI've been working on getting images of contracts into the system. I'm using `gemini-2.5-flash` for its multimodal capabilities. I'm converting uploaded images to Base64 and sending them as inline data. I decided not to support PDF uploads, and I will explicitly tell the user to upload images (JPG, PNG) or paste the text, for reliability and consistency.\n\n\n**Beginning Code Construction**\n\nI'm now diving into the code. I've set up the basic structure with `App.tsx` at the core, connecting to `geminiService.ts` for API interaction. My focus is on the `LegalAnalyzer.tsx` component, which will be the central logic handler, orchestrating image uploads and API calls. I'm prioritizing dependency-free solutions, opting for plain HTML formatting over `react-markdown` if necessary, and simple parsing for specific visual elements.  I've confirmed the Gemini API setup and am using `gemini-2.5-flash` for its efficiency.\n\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638010764,
+    "doneTimestamp": 1763638052103
+  },
+  {
+    "id": 2,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "metadata.json",
+          "generationType": 0,
+          "isDone": true,
+          "description": "App metadata definition"
+        },
+        {
+          "path": "index.html",
+          "generationType": 0,
+          "isDone": true,
+          "description": "Root HTML file with Tailwind CSS"
+        },
+        {
+          "path": "index.tsx",
+          "generationType": 0,
+          "isDone": true,
+          "description": "Application entry point"
+        },
+        {
+          "path": "types.ts",
+          "generationType": 0,
+          "isDone": true,
+          "description": "TypeScript definitions for the application"
+        },
+        {
+          "path": "services/geminiService.ts",
+          "generationType": 0,
+          "isDone": true,
+          "description": "Gemini API integration service"
+        },
+        {
+          "path": "components/Icons.tsx",
+          "generationType": 0,
+          "isDone": true,
+          "description": "Icon components"
+        },
+        {
+          "path": "components/AnalysisDisplay.tsx",
+          "generationType": 0,
+          "isDone": true,
+          "description": "Component to render the analysis results with custom formatting"
+        },
+        {
+          "path": "App.tsx",
+          "generationType": 0,
+          "isDone": true,
+          "description": "Main application layout and logic"
+        }
+      ]
+    },
+    "createdTimestamp": 1763638052104,
+    "doneTimestamp": 1763638052278
+  },
+  {
+    "id": 3,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "Analiza el documento legal y resalta las cláusulas que definen las principales obligaciones y responsabilidades de cada parte involucrada. Presenta estas cláusulas de forma destacada y explica su impacto.\nDebo poder subir documentos legales en pdf",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638300897
+  },
+  {
+    "id": 4,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": ""
+    },
+    "createdTimestamp": 1763638300897
+  },
+  {
+    "id": 5,
+    "author": "model",
+    "payload": {
+      "type": "error",
+      "error": "The task was canceled.",
+      "isCancelError": true
+    },
+    "createdTimestamp": 1763638305420,
+    "doneTimestamp": 1763638305420
+  },
+  {
+    "id": 6,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "Analiza el documento legal y resalta las cláusulas que definen las principales obligaciones y responsabilidades de cada parte involucrada. Presenta estas cláusulas de forma destacada y explica su impacto.\nDebo poder subir documentos legales en pdf\nEl resultado de la app debe ser en español",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638333582
+  },
+  {
+    "id": 7,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Revising Analysis Logic**\n\nI'm now revising the analysis prompt to better pinpoint clauses defining key obligations and responsibilities within legal documents.  The goal is to enhance the precision of the output. I'm focusing on identifying these clauses and improving how they are presented. I'm considering using a more refined technique.\n\n\n**Adapting to PDF Input**\n\nI'm now integrating PDF support by modifying the file upload logic to allow PDFs and base64-encoding them for the Gemini API. This involves updating the UI to accept PDFs and adjusting the service to process the base64-encoded PDF content. I'm focusing on ensuring seamless handling of both image and PDF inputs. The model is capable of supporting this change as I am using the `gemini-1.5-pro-preview-0125` model, or the `gemini-flash-0125` model.\n\n\n**Expanding PDF Handling**\n\nI'm now expanding my PDF handling capabilities. I'm focusing on fully integrating PDF support by updating both the UI and the service logic.  I'm modifying `App.tsx` to accept PDF uploads and adjusting `processFile` to handle these.  I'm also ensuring the Gemini service can process base64-encoded PDF content correctly. The validation and UI will show a PDF icon. I am refining the existing instruction logic in `geminiService.ts` to improve PDF-specific obligations and responsibilities.\n\n\n**Improving Presentation Style**\n\nI'm now refining the presentation of the analysis. Instead of the generic FileTextIcon, I'll incorporate a specific PDF icon for uploaded documents. I'm also merging the \"Traffic Light\" system with the new request for \"Obligations and Responsibilities,\" maintaining the original structure but adding an explicit section for highlighted clauses. Furthermore, I'll force the output to be in Spanish, as per the user's explicit request. I am also planning on adding the prompts together. I want the app to be very flexible for various use cases.\n\n\n**Integrating PDF Enhancements**\n\nI'm currently working to integrate PDF enhancements further. I have expanded the file upload logic in `App.tsx` to accept PDF uploads, and removed the image restriction. I am updating `fileState.base64` in `App.tsx` so the full base64 string is properly captured. I also implemented a PDF icon or placeholder in the UI for PDFs. Next, I need to address the `mimeType` handling within `geminiService.ts` to fully support PDF processing and update the new instruction structure.\n\n\n**Implementing PDF Support**\n\nI'm now focusing on integrating `application/pdf` support fully. I've confirmed the `mimeType` extraction from `file.type` works well with PDF input. The `base64` stripping logic in `geminiService.ts` correctly handles the PDF `data:` prefix, ensuring the API receives the raw base64 data. Additionally, I've confirmed that the analysis output display will correctly render the new \"Obligaciones\" section as a standard Markdown header, due to the flexibility of the Markdown parser. I'm now integrating the user's detailed Spanish prompt into the \"Instrucciones Específicas\" section of the system prompt. Next, I will modify `components/Icons.tsx` to handle this.\n\n\n**Enhancing File Preview**\n\nI'm now refining the file preview logic within `App.tsx`. I'm replacing the image preview with a PDF icon when the uploaded file's MIME type is 'application/pdf'. I'm also ensuring the Gemini service's `SYSTEM_INSTRUCTION` and prompt are correctly updated to handle the new instructions. I'll make sure the system forces the output to be in Spanish.\n\n\n**Integrating PDF Uploads**\n\nI'm now integrating the full PDF upload and processing flow. I'm focusing on ensuring the `mimeType` from the file input is correctly passed to the Gemini service. The revised system instructions, updated to handle the obligations and responsibilities section, are ready. Next, I am focused on modifying the UI to display a PDF icon correctly. I'm also confirming the `gemini-1.5-pro-preview-0125` model's `inlineData` capabilities to handle PDFs directly, within the 20MB limit.\n\n\n**Updating File Handling**\n\nI'm now revising the file handling logic in `App.tsx` to accommodate the user's focus on documents.  I am ensuring that `application/pdf` is explicitly handled as a valid input. I've updated the file type validation to accept both images and PDFs. The preview logic will display a PDF icon when a PDF is uploaded. I'm focusing on ensuring seamless integration with the existing system architecture.\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638333582,
+    "doneTimestamp": 1763638365626
+  },
+  {
+    "id": 8,
+    "author": "model",
+    "payload": {
+      "type": "text",
+      "text": "Based on your requirements, I will update the application to support PDF uploads and modify the AI analysis to focus on obligations, responsibilities, and their impact, ensuring the output is in Spanish.\n\nHere are the changes:\n\n1.  **`components/Icons.tsx`**: Added a `PdfIcon` for the UI.\n2.  **`App.tsx`**:\n    *   Updated the file input to accept `.pdf` files.\n    *   Updated the validation logic to allow `application/pdf`.\n    *   Updated the file preview section to show a PDF icon instead of trying to render a PDF as an image.\n    *   Translated UI error messages and labels to Spanish/English context or just kept them English for UI but Spanish for results? The prompt implies the *result* must be in Spanish (\"El resultado de la app debe ser en español\"). I will keep the UI in English (as per the original file) but ensure the *prompt* enforces Spanish output, although I will translate the user-facing error messages in `processFile` for better UX given the Spanish prompt context.\n3.  **`services/geminiService.ts`**:\n    *   Updated the `SYSTEM_INSTRUCTION` to include a specific section for \"Obligaciones y Responsabilidades\" (Obligations and Responsibilities) as requested.\n    *   Enforced Spanish output strictly.\n    *   The generic `inlineData` handling already supports PDFs if the correct MIME type is passed, so logic remains largely the same but the prompt is significantly enhanced.\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638365649,
+    "doneTimestamp": 1763638365718
+  },
+  {
+    "id": 9,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "components/Icons.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Added PdfIcon for file preview"
+        },
+        {
+          "path": "services/geminiService.ts",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Updated system instruction to include Obligations/Responsibilities section and enforce Spanish output, and to handle PDF inputs contextually."
+        },
+        {
+          "path": "App.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Allowed PDF uploads, updated preview logic to handle PDFs, and allowed PDF in processing validation."
+        }
+      ]
+    },
+    "createdTimestamp": 1763638369461,
+    "doneTimestamp": 1763638383129
+  },
+  {
+    "id": 10,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "Los resultados del análisis se han de poder exportar a pdf. El interface de la app tiene que ser en español",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638824463
+  },
+  {
+    "id": 11,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Developing New Features**\n\nI've been focusing on adding the PDF export feature, which is progressing well. I'm also starting to explore the translation and localization of the user interface into Spanish. The goal is to ensure a seamless experience for Spanish-speaking users. The development pipeline is streamlined, so I'm hoping for swift progress.\n\n\n**Exploring Export Solutions**\n\nI'm currently investigating PDF export options. Considering the limitations, I'm leaning toward using `window.print()` with CSS styling for a dependency-free solution. I'll need to carefully design the print styles to mimic a PDF output accurately. I'm also examining the feasibility of adding a CDN-linked PDF library directly in `index.html` to improve fidelity of output. The primary goal is to provide a user-friendly way to save the analysis results.\n\n\n**Refining PDF Implementation**\n\nMy focus is now firmly on the PDF export feature. I've chosen `html2pdf.js` via CDN for a robust export. I've updated `index.html` with the CDN script and integrated an \"Exportar a PDF\" button in `AnalysisDisplay.tsx`.  Next, I'll concentrate on perfecting the styling of the exported PDF. I'm prioritizing user experience so the output is polished and professional.\n\n\n**Translating UI Elements**\n\nI'm deep into localizing the UI into Spanish. I've finished translating the input section, including the text prompts and upload area labels. The buttons and analysis results headers are also done.  Currently, I'm working on the disclaimer in the results area; it's crucial to convey its meaning accurately. My next step will be to test the localized interface.\n\n\n**Translating & Refining Export**\n\nI'm now diving into the specifics of Spanish translation and refining the PDF export. I've translated key UI elements like \"Extracting...\" to \"Extrayendo...\" and \"Analysis will appear here\" to \"El análisis aparecerá aquí\". I'm also adding a `DownloadIcon` component and the \"Exportar PDF\" button in `AnalysisDisplay.tsx`, with a `handleExport` function for PDF generation using `html2pdf.js`.  I've added the necessary script tag in `index.html` as well. The code for the download button and internal logic is almost ready for testing and validation.\n\n\n**Enhancing Export Options**\n\nI'm making progress translating the UI, and integrating the download icon and PDF export. I've focused on translating key UI elements in `AnalysisDisplay.tsx`, including \"Legal Analysis\" and the generated disclaimer. I'm also now translating the strings in `App.tsx` and the description in `metadata.json`. The goal is to provide a fully localized experience, covering both the user interface and the analysis content.  I've added the `DownloadIcon` component, which completes my local changes. The code is ready for testing.\n\n\n**Adding Export Button and Translations**\n\nI've incorporated the `DownloadIcon` from `components/Icons.tsx` and created the `downloadPdf` function in `AnalysisDisplay.tsx`.  The export button is now rendered and the Spanish translations are incorporated within `AnalysisDisplay.tsx`. I've also translated all relevant UI text within `App.tsx` and updated the `metadata.json` file with Spanish translations. I'm focusing now on ensuring `html2pdf.js` is correctly integrated and that it exports accurately. Testing will verify proper functionality and formatting.\n\n\n**Implementing Spanish Translations**\n\nI've completed the Spanish translation of the UI, including all text within `App.tsx` and the description in `metadata.json`. I've added a download button with the proper \"Exportar PDF\" label and ensured `html2pdf.js` is correctly integrated. Now, I'm focusing on handling error messages and ensuring `geminiService.ts` remains untouched as it is already configured for Spanish outputs. I also plan to add XML.\n\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638824463,
+    "doneTimestamp": 1763638867976
+  },
+  {
+    "id": 12,
+    "author": "model",
+    "payload": {
+      "type": "text",
+      "text": "Based on your request, I will update the application to translate the entire interface into Spanish and add a feature to export the analysis results to a PDF file.\n\nHere are the specific changes:\n\n1.  **`index.html`**: Added the `html2pdf.js` library via CDN to enable PDF generation functionality.\n2.  **`components/Icons.tsx`**: Added a `DownloadIcon` for the export button.\n3.  **`components/AnalysisDisplay.tsx`**:\n    *   Added a \"Exportar a PDF\" (Export to PDF) button.\n    *   Implemented the logic to generate a downloadable PDF of the analysis using `html2pdf`.\n    *   Translated all static text (titles, disclaimers) to Spanish.\n4.  **`App.tsx`**: Translated all user interface elements (headers, buttons, instructions, placeholders, error messages) into Spanish.\n5.  **`metadata.json`**: Updated the application description to Spanish.\n\n# Updated files:\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763638867976,
+    "doneTimestamp": 1763638867977
+  },
+  {
+    "id": 13,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "index.html",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Added html2pdf library for PDF export functionality"
+        },
+        {
+          "path": "metadata.json",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Translated description to Spanish"
+        },
+        {
+          "path": "components/Icons.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Added DownloadIcon"
+        },
+        {
+          "path": "components/AnalysisDisplay.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Translated UI to Spanish and added PDF Export functionality"
+        },
+        {
+          "path": "App.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Translated entire UI to Spanish"
+        }
+      ]
+    },
+    "createdTimestamp": 1763638869992,
+    "doneTimestamp": 1763638875240
+  },
+  {
+    "id": 14,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "Esta app, además del análisis que realiza, debe también poder examinar el texto y encontrar y resaltar errores de redacción, incongruencias, clausulas ilegales o incorrectas, expresiones incompletas, etc. Los errores deben resaltarse en rojo y debe proponerse la corrección adecuada a fin de que el documento sea perfecto en cuanto a forma.\nPor tanto, además de estudiar el fondo del documento y hacer un análisis legal, que es lo que está haciendo ahora, debe también hacer un análisis de forma, detectan domo te digo errores en cuanto a la redacción, la expresión, el vocabulario, las incongruencias, errores en cuanto a clausulado, articulado, etc., remarcando en rojo los errores y proponiendo las correcciones.\nLo ideal sería, por tanto, que hubiera diferenciados dos tipo de análisis. Uno se llamaría el análisis jurídico, que es el que hay actualmente, y otro sería el análisis de forma, que es el que tiene que revisar el documento en si como tal buscando todo lo que te acabo de exponer.\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763639859439
+  },
+  {
+    "id": 15,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Defining Expansion Parameters**\n\nI'm currently focused on defining the exact scope of expanding \"LegalLens AI.\" I've been considering the user's objective to build out the application. I'm taking into account its current capabilities, the analysis of legal documents, and the extraction of essential information from these documents. I aim to identify potential areas for growth and improvement within the application, keeping in mind its core functionalities.\n\n\n**Developing New Features**\n\nI've been working on integrating \"Análisis de Forma,\" the new feature, into LegalLens AI. This involves the ability to analyze redaction errors and other formal issues within documents. I'm prioritizing the separation of the existing \"Análisis Jurídico\" and the new \"Análisis de Forma\" in the UI. I've also begun to implement red highlighting for identified errors and proposed corrections. I'm now exploring how best to handle this new prompt within the code, considering a split prompt approach for cleaner outputs.\n\n\n**Refining Analysis Logic**\n\nI'm currently modifying the core analysis function to accept an \"Analysis Type\" parameter, enabling both juridical and form analysis. This involves defining an `AnalysisType` enum and updating relevant interfaces. In `App.tsx`, I'm adding UI elements, potentially segmented controls or tabs, for users to select their preferred analysis mode. Considering the prompt's preference, I'm leaning toward running both analyses concurrently when \"Analyze\" is clicked, or letting users pick. The goal is to optimize the user experience, while dealing with latency.\n\n\n**Optimizing Analysis Display**\n\nI'm now focused on the best way to present both analysis types to the user. My current plan is to make two API calls in parallel when the user clicks \"Analyze,\" one for each analysis. This will enable immediate tab switching in the results section, offering a better user experience. To achieve this, I'm integrating tabs into the output area and introducing a state variable for `activeTab` to manage the display. This approach balances simplicity and user satisfaction. Finally, I'll need to adapt `AnalysisDisplay.tsx` to handle specific formatting for the \"Form Analysis\" tab.\n\n\n**Designing Detailed Instructions**\n\nI'm now specifying the prompt engineering for \"Form Analysis\" with Gemini. I'm choosing a format to best present the outputs. I'm debating between using a custom format or sticking with standard Markdown, such as diff syntax and bolding. My thoughts are to tell Gemini to format the \"Form Analysis\" output using specific headers, bullet points, and icons. I'm focusing on making the output clear and readable for the user.\n\n\n**Enhancing Display Logic**\n\nI'm presently refactoring the application's display logic to effectively present both types of analysis results. I'm focusing on the implementation of a tabbed interface within the results section. This involves updating state management to accommodate both \"juridicalResult\" and \"formResult\" data. I've updated the `handleAnalyze` function to handle parallel API requests using `Promise.all` for efficiency. The key consideration is ensuring the \"Form\" analysis prompt generates Markdown that `AnalysisDisplay` can render using existing logic for red highlights and corrections. I plan to refine the prompt format to output specific markers like `🔴 ERROR:` and `🟢 CORRECCIÓN:` for clarity.\n\n\n**Integrating Formal Analysis**\n\nI'm now focusing on integrating the 'Form Analysis' instruction set. I'm leveraging the existing parser which handles the specific Markdown formatting.  I'm pleased with the state updates in `App.tsx` and the integration of a tabbed interface. I'm feeling confident in the clarity of the analysis output, with the `🔴 ERROR:` and `🟢 CORRECCIÓN:` markers.  I believe this will significantly improve user comprehension.\n\n\n**Completing Dual Result Types**\n\nI'm now adding types for the dual results and integrating the new prompt. I'm adding a \"Pen\" icon for the form tab. I'm focusing on the logic for tab switching and dual API calls in `App.tsx`. I need to ensure the export function only exports the currently visible analysis. The current `html2pdf` logic naturally handles this. Finally, I'll run the two `generateContent` calls in parallel.\n\n\n**Improving Error Handling**\n\nI'm now focusing on robust error handling for parallel API calls. I've decided to use a `Promise.all` structure, which simplifies the code. If one call fails, the entire process errors, which is acceptable for the MVP.  This approach maintains brevity. I've also created the `EditIcon` in `Icons.tsx` for the form analysis tab, and I'm ensuring the prompt outputs follow the expected formatting, including the `🔴 ERROR` pattern for the `AnalysisDisplay` parser. This will provide consistent red highlighting for errors in the form analysis results.\n\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763639859439,
+    "doneTimestamp": 1763639904356
+  },
+  {
+    "id": 16,
+    "author": "model",
+    "payload": {
+      "type": "text",
+      "text": "To implement the request for two distinct types of analysis (\"Juridical\" and \"Form\"), I will update the application to run both analyses.\n\nHere is the plan:\n1.  **`types.ts`**: Update `AnalysisResult` to store results for both types of analysis.\n2.  **`components/Icons.tsx`**: Add an `EditIcon` to represent the \"Form/Redaction\" analysis tab.\n3.  **`services/geminiService.ts`**: Create a specific system instruction for the \"Form Analysis\" (focusing on grammar, syntax, errors, and corrections) and update the function to support requesting a specific type.\n4.  **`App.tsx`**:\n    *   Update the state to hold both results.\n    *   Trigger both API calls in parallel when analyzing.\n    *   Add a Tab interface in the results section to switch between \"Análisis Jurídico\" and \"Análisis de Forma\".\n5.  **`components/AnalysisDisplay.tsx`**: Update the parser logic slightly to ensure it handles the \"Correction\" (Green) and \"Error\" (Red) structure of the new analysis type gracefully within the existing visual design.\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1763639904356,
+    "doneTimestamp": 1763639904357
+  },
+  {
+    "id": 17,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "types.ts",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Update AnalysisResult to support dual analysis types"
+        },
+        {
+          "path": "components/Icons.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Add EditIcon for the Form Analysis tab"
+        },
+        {
+          "path": "services/geminiService.ts",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Add separate instruction for Form Analysis and support type selection"
+        },
+        {
+          "path": "components/AnalysisDisplay.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Render both error (Red) and correction (Green) blocks properly"
+        },
+        {
+          "path": "App.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Implement dual analysis calls and tab UI"
+        }
+      ]
+    },
+    "createdTimestamp": 1763639906500,
+    "doneTimestamp": 1763639908273
+  },
+  {
+    "id": 18,
+    "author": "user",
+    "payload": {
+      "type": "text",
+      "text": "¿Puedes actualizar la app a Gemini 3.0?\n",
+      "files": [],
+      "fileUploads": [],
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1765529341387
+  },
+  {
+    "id": 19,
+    "author": "model",
+    "payload": {
+      "type": "thinking",
+      "text": "**Revisiting Available Models**\n\nI've been going through the models list, and the key point is the app update targeting \"Gemini 3.0\". Now, after reviewing the documentation, it seems like `gemini-2.5-` is the officially supported model. The question is how to interpret \"Gemini 3.0\", which might be an abstraction or internal designation.\n\n\n**Updating Model Strategy**\n\nNow I'm focusing on the model selection. The user's request for \"Gemini 3.0\" is leading me to `gemini-3-pro-preview` based on the available models and the documentation. This is a complex reasoning task, so I'll prioritize `gemini-3-pro-preview` per the prompt guidelines. The plan is to locate and update the model name in `services/geminiService.ts` from `gemini-2.5-flash` to the better-suited `gemini-3-pro-preview`. This should result in improved performance.\n\n\n**Confirming Model Change**\n\nI've decided to proceed with the updates based on the current model selection. The necessary adjustments will involve changing the model name within the `geminiService.ts` file to use `gemini-3-pro-preview`. Additionally, the UI's footer will be changed to reflect \"Gemini 3.0\". I've verified that no other files need alteration. Now I am constructing the XML changes for these files as the final step.\n\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1765529341387,
+    "doneTimestamp": 1765529431882
+  },
+  {
+    "id": 20,
+    "author": "model",
+    "payload": {
+      "type": "text",
+      "text": "Based on your request to update to Gemini 3.0, I will upgrade the underlying model for the legal analysis to `gemini-3-pro-preview`. This model is better suited for complex text tasks like deep legal reasoning and precise editorial correction. I will also update the UI to reflect this version change.\n\nHere are the changes:\n\n",
+      "cMarkNode": {}
+    },
+    "createdTimestamp": 1765529431882,
+    "doneTimestamp": 1765529431935
+  },
+  {
+    "id": 21,
+    "author": "model",
+    "payload": {
+      "type": "generationTable",
+      "entries": [
+        {
+          "path": "services/geminiService.ts",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Updated model to gemini-3-pro-preview (Gemini 3.0)",
+          "diffs": [
+            {
+              "target": "",
+              "replacement": "import { GoogleGenAI } from \"@google/genai\";\n\n// Instruction for Substantive/Legal Analysis\nconst JURIDICAL_INSTRUCTION = `\nRol: Eres un Abogado Senior y Experto en Análisis Legal con más de 20 años de experiencia en derecho civil, mercantil y contractual.\n\nObjetivo: Tu tarea es analizar el FONDO del documento. Protege los intereses del usuario identificando obligaciones y riesgos legales sustanciales.\n\nFormato de Salida: Debes responder siempre en formato Markdown limpio y estructurado. EL RESULTADO DEBE SER ESTRICTAMENTE EN ESPAÑOL.\n\nInstrucciones Específicas:\n1. Resumen Ejecutivo: Inicia con un resumen de 1 párrafo explicándole a un niño de 10 años de qué trata el documento.\n\n2. Obligaciones y Responsabilidades:\n   - Identifica y resalta las cláusulas que definen las principales obligaciones y responsabilidades de cada parte.\n   - Presenta estas cláusulas de forma destacada.\n   - Explica brevemente el impacto práctico.\n\n3. Análisis de Riesgos (El Semáforo): Analiza las cláusulas y clasifícalas:\n   - 🔴 ALERTA ROJA: Cláusulas peligrosas, abusivas o inusuales.\n   - 🟡 ALERTA AMARILLA: Puntos que requieren negociación o aclaración.\n   - 🟢 LUZ VERDE: Cláusulas estándar y justas.\n\n4. Explicación de Jerga: Explica términos complejos en lenguaje llano.\n\n5. Preguntas Sugeridas: Sugiere 3 preguntas críticas.\n\nTono: Profesional, objetivo y protector.\n`;\n\n// Instruction for Form/Redaction Analysis\nconst FORM_INSTRUCTION = `\nRol: Eres un Editor Legal Senior, Corrector de Estilo Jurídico y Experto en Redacción Contractual.\n\nObjetivo: Tu tarea es analizar la FORMA del documento. Debes auditar la calidad de redacción, detectar errores, incongruencias y cláusulas mal formuladas o ilegales por defecto de forma.\n\nFormato de Salida: Markdown limpio. EL RESULTADO DEBE SER ESTRICTAMENTE EN ESPAÑOL.\n\nInstrucciones Específicas:\nRevisa el documento buscando EXCLUSIVAMENTE:\n1. Errores de Redacción y Ortografía: Typos, faltas de ortografía, gramática pobre.\n2. Incongruencias: (Ej: Llamar \"Cliente\" en un lado y \"Comprador\" en otro; fechas que no cuadran; referencias a cláusulas inexistentes).\n3. Cláusulas Ilegales o Nulas por Forma: Redacción tan confusa que anula la cláusula, o falta de elementos esenciales.\n4. Expresiones Incompletas: Frases cortadas o sin sentido.\n\nPara cada error encontrado, utiliza ESTRICTAMENTE este formato:\n\n🔴 ERROR DE FORMA DETECTADO:\n[Cita textual del error o la frase confusa]\n**Problema:** [Explica por qué es un error, incongruencia o mala redacción]\n\n🟢 PROPUESTA DE CORRECCIÓN:\n[Escribe la redacción corregida y perfecta]\n\n---\n\nSi el documento está perfecto, indícalo claramente. No inventes errores si no los hay.\n\nTono: Perfeccionista, crítico y preciso.\n`;\n\nexport const analyzeDocument = async (\n  textInput: string, \n  fileBase64: string | null = null, \n  mimeType: string | null = null,\n  type: 'JURIDICAL' | 'FORM' = 'JURIDICAL'\n): Promise<string> => {\n  \n  if (!process.env.API_KEY) {\n    throw new Error(\"API Key is missing\");\n  }\n\n  try {\n    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });\n    \n    // Upgraded to Gemini 3.0 Pro Preview for better complex reasoning\n    const modelName = 'gemini-3-pro-preview';\n\n    const parts: any[] = [];\n\n    // Add file\n    if (fileBase64 && mimeType) {\n      const base64Data = fileBase64.includes('base64,') \n        ? fileBase64.split('base64,')[1] \n        : fileBase64;\n\n      parts.push({\n        inlineData: {\n          data: base64Data,\n          mimeType: mimeType\n        }\n      });\n    }\n\n    // Add text prompt based on type\n    let promptText = \"\";\n    if (type === 'JURIDICAL') {\n        promptText = \"Realiza el ANÁLISIS JURÍDICO DE FONDO (Obligaciones, Riesgos, Semáforo) siguiendo tus instrucciones:\";\n    } else {\n        promptText = \"Realiza el ANÁLISIS DE FORMA (Errores, Incongruencias, Correcciones) siguiendo tus instrucciones:\";\n    }\n\n    if (textInput) {\n      promptText += `\\n\\nContexto adicional o texto del documento:\\n${textInput}`;\n    }\n    \n    parts.push({ text: promptText });\n\n    const response = await ai.models.generateContent({\n      model: modelName,\n      contents: {\n        role: 'user',\n        parts: parts\n      },\n      config: {\n        systemInstruction: type === 'JURIDICAL' ? JURIDICAL_INSTRUCTION : FORM_INSTRUCTION,\n        temperature: 0.3, \n      }\n    });\n\n    return response.text || \"No se pudo generar el análisis.\";\n  } catch (error: any) {\n    console.error(`Gemini Analysis Error (${type}):`, error);\n    throw new Error(error.message || \"Failed to analyze document\");\n  }\n};"
+            }
+          ]
+        },
+        {
+          "path": "App.tsx",
+          "generationType": 1,
+          "isDone": true,
+          "description": "Updated UI text to reflect Gemini 3.0",
+          "diffs": [
+            {
+              "target": "",
+              "replacement": "import React, { useState, useRef, useEffect } from 'react';\nimport { analyzeDocument } from './services/geminiService';\nimport { AnalysisStatus, FileUploadState, AnalysisResult } from './types';\nimport AnalysisDisplay from './components/AnalysisDisplay';\nimport { ScaleIcon, UploadIcon, FileTextIcon, XIcon, PdfIcon, EditIcon } from './components/Icons';\n\nfunction App() {\n  const [textInput, setTextInput] = useState('');\n  const [fileState, setFileState] = useState<FileUploadState>({\n    file: null,\n    previewUrl: null,\n    base64: null,\n    mimeType: null\n  });\n  const [status, setStatus] = useState<AnalysisStatus>(AnalysisStatus.IDLE);\n  const [results, setResults] = useState<AnalysisResult>({ juridical: null, form: null });\n  const [activeTab, setActiveTab] = useState<'JURIDICAL' | 'FORM'>('JURIDICAL');\n  const [error, setError] = useState<string | null>(null);\n\n  const fileInputRef = useRef<HTMLInputElement>(null);\n\n  // Cleanup object URL on unmount or file change\n  useEffect(() => {\n    return () => {\n      if (fileState.previewUrl) {\n        URL.revokeObjectURL(fileState.previewUrl);\n      }\n    };\n  }, [fileState.previewUrl]);\n\n  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\n    const file = event.target.files?.[0];\n    if (!file) return;\n\n    processFile(file);\n  };\n\n  const processFile = (file: File) => {\n     // Accept images and PDFs\n     if (!file.type.startsWith('image/') && file.type !== 'application/pdf') {\n        setError(\"Por favor sube una imagen (JPG, PNG) o un PDF del contrato.\");\n        return;\n     }\n\n     const reader = new FileReader();\n     reader.onloadend = () => {\n       setFileState({\n         file: file,\n         previewUrl: URL.createObjectURL(file),\n         base64: reader.result as string,\n         mimeType: file.type\n       });\n       setError(null);\n     };\n     reader.readAsDataURL(file);\n  };\n\n  const handleDrop = (e: React.DragEvent) => {\n    e.preventDefault();\n    const file = e.dataTransfer.files?.[0];\n    if (file) processFile(file);\n  };\n\n  const clearFile = () => {\n    if (fileInputRef.current) fileInputRef.current.value = '';\n    setFileState({ file: null, previewUrl: null, base64: null, mimeType: null });\n  };\n\n  const handleAnalyze = async () => {\n    if (!textInput && !fileState.base64) {\n      setError(\"Por favor proporciona texto o sube un documento.\");\n      return;\n    }\n\n    setStatus(AnalysisStatus.ANALYZING);\n    setError(null);\n    setResults({ juridical: null, form: null });\n    setActiveTab('JURIDICAL'); // Default to juridical view\n\n    try {\n      // Run both analyses in parallel\n      const [juridicalResult, formResult] = await Promise.all([\n        analyzeDocument(textInput, fileState.base64, fileState.mimeType, 'JURIDICAL'),\n        analyzeDocument(textInput, fileState.base64, fileState.mimeType, 'FORM')\n      ]);\n\n      setResults({\n        juridical: juridicalResult,\n        form: formResult\n      });\n      setStatus(AnalysisStatus.COMPLETED);\n    } catch (err: any) {\n      setError(err.message || \"Ocurrió un error inesperado durante el análisis.\");\n      setStatus(AnalysisStatus.ERROR);\n    }\n  };\n\n  return (\n    <div className=\"min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900\">\n      {/* Header */}\n      <header className=\"bg-white border-b border-slate-200 sticky top-0 z-50\">\n        <div className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between\">\n          <div className=\"flex items-center gap-2\">\n            <div className=\"bg-indigo-600 p-2 rounded-lg text-white shadow-md\">\n              <ScaleIcon className=\"w-6 h-6\" />\n            </div>\n            <span className=\"text-xl font-bold text-slate-800 tracking-tight\">LegalLens<span className=\"text-indigo-600\">AI</span></span>\n          </div>\n          <div className=\"text-sm text-slate-500 hidden sm:block\">\n            Impulsado por Gemini 3.0\n          </div>\n        </div>\n      </header>\n\n      <main className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8\">\n        \n        {/* Intro Hero */}\n        <div className=\"mb-10 text-center max-w-3xl mx-auto\">\n          <h1 className=\"text-4xl font-bold text-slate-900 mb-4\">\n            Entiende lo que firmas.\n          </h1>\n          <p className=\"text-lg text-slate-600\">\n            Sube un contrato (PDF o Imagen) o pega texto legal. Realizamos un doble análisis: <span className=\"font-bold text-indigo-600\">Jurídico</span> (fondo) y de <span className=\"font-bold text-emerald-600\">Forma</span> (redacción y errores).\n          </p>\n        </div>\n\n        <div className=\"grid grid-cols-1 lg:grid-cols-12 gap-8\">\n          \n          {/* Left Column: Input */}\n          <div className=\"lg:col-span-5 space-y-6\">\n            \n            {/* Text Input Area */}\n            <div className=\"bg-white p-6 rounded-xl shadow-sm border border-slate-200\">\n              <label className=\"block text-sm font-medium text-slate-700 mb-2\">\n                Pegar Texto Legal\n              </label>\n              <textarea\n                className=\"w-full h-64 p-4 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none text-sm leading-relaxed bg-slate-50 focus:bg-white\"\n                placeholder=\"Pega los términos del contrato, política de privacidad o texto legal aquí...\"\n                value={textInput}\n                onChange={(e) => setTextInput(e.target.value)}\n                disabled={status === AnalysisStatus.ANALYZING}\n              />\n            </div>\n\n            {/* OR Separator */}\n            <div className=\"flex items-center gap-4\">\n              <div className=\"h-px bg-slate-300 flex-1\"></div>\n              <span className=\"text-slate-400 text-sm font-medium\">O SUBE UN DOCUMENTO</span>\n              <div className=\"h-px bg-slate-300 flex-1\"></div>\n            </div>\n\n            {/* File Upload Area */}\n            <div \n              className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer group ${\n                fileState.file \n                  ? 'border-indigo-200 bg-indigo-50' \n                  : 'border-slate-300 hover:border-indigo-400 hover:bg-slate-50'\n              }`}\n              onDragOver={(e) => e.preventDefault()}\n              onDrop={handleDrop}\n              onClick={() => !fileState.file && fileInputRef.current?.click()}\n            >\n              <input\n                type=\"file\"\n                ref={fileInputRef}\n                onChange={handleFileChange}\n                accept=\"image/*,application/pdf\"\n                className=\"hidden\"\n              />\n\n              {fileState.file ? (\n                <div className=\"flex flex-col items-center\">\n                  <div className=\"relative mb-4\">\n                    {fileState.mimeType === 'application/pdf' ? (\n                       <div className=\"h-32 w-32 bg-white flex items-center justify-center rounded-lg border border-slate-200 shadow-sm\">\n                          <div className=\"text-red-500 flex flex-col items-center\">\n                             <PdfIcon className=\"w-12 h-12\" />\n                             <span className=\"text-xs font-bold mt-2 text-slate-600\">PDF</span>\n                          </div>\n                       </div>\n                    ) : (\n                      <img \n                        src={fileState.previewUrl!} \n                        alt=\"Preview\" \n                        className=\"h-32 w-auto object-contain rounded-lg shadow-sm border border-slate-200\" \n                      />\n                    )}\n                    \n                    <button \n                      onClick={(e) => {\n                        e.stopPropagation();\n                        clearFile();\n                      }}\n                      className=\"absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 transition-colors\"\n                    >\n                      <XIcon className=\"w-4 h-4\" />\n                    </button>\n                  </div>\n                  <div className=\"flex items-center gap-2 text-indigo-900 font-medium\">\n                    <FileTextIcon className=\"w-4 h-4\" />\n                    <span className=\"truncate max-w-[200px]\">{fileState.file.name}</span>\n                  </div>\n                </div>\n              ) : (\n                <>\n                  <div className=\"w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform\">\n                    <UploadIcon className=\"w-6 h-6\" />\n                  </div>\n                  <p className=\"text-slate-900 font-medium mb-1\">Haz clic para subir o arrastra y suelta</p>\n                  <p className=\"text-slate-500 text-xs\">Soporta JPG, PNG, PDF</p>\n                </>\n              )}\n            </div>\n\n            {/* Action Button */}\n            <button\n              onClick={handleAnalyze}\n              disabled={status === AnalysisStatus.ANALYZING || (!textInput && !fileState.file)}\n              className={`w-full py-4 rounded-xl font-bold text-lg shadow-lg transition-all transform active:scale-[0.98] flex items-center justify-center gap-2\n                ${status === AnalysisStatus.ANALYZING \n                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed' \n                  : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-indigo-500/30'\n                }\n              `}\n            >\n              {status === AnalysisStatus.ANALYZING ? (\n                <>\n                  <svg className=\"animate-spin -ml-1 mr-3 h-5 w-5 text-slate-400\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\">\n                    <circle className=\"opacity-25\" cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" strokeWidth=\"4\"></circle>\n                    <path className=\"opacity-75\" fill=\"currentColor\" d=\"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z\"></path>\n                  </svg>\n                  Analizando Documento...\n                </>\n              ) : (\n                <>\n                  <ScaleIcon className=\"w-5 h-5\" />\n                  Analizar Documento\n                </>\n              )}\n            </button>\n\n            {error && (\n              <div className=\"p-4 bg-red-50 text-red-700 rounded-lg text-sm border border-red-200 animate-fadeIn\">\n                {error}\n              </div>\n            )}\n          </div>\n\n          {/* Right Column: Output */}\n          <div className=\"lg:col-span-7\">\n            {status === AnalysisStatus.COMPLETED ? (\n              <div className=\"space-y-4\">\n                \n                {/* Tabs */}\n                <div className=\"flex rounded-xl bg-slate-200 p-1 shadow-inner\">\n                  <button\n                    onClick={() => setActiveTab('JURIDICAL')}\n                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-lg transition-all\n                      ${activeTab === 'JURIDICAL' \n                        ? 'bg-white text-indigo-600 shadow-sm' \n                        : 'text-slate-500 hover:text-slate-700'\n                      }\n                    `}\n                  >\n                    <ScaleIcon className=\"w-4 h-4\" />\n                    Análisis Jurídico\n                  </button>\n                  <button\n                    onClick={() => setActiveTab('FORM')}\n                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-lg transition-all\n                      ${activeTab === 'FORM' \n                        ? 'bg-white text-emerald-600 shadow-sm' \n                        : 'text-slate-500 hover:text-slate-700'\n                      }\n                    `}\n                  >\n                    <EditIcon className=\"w-4 h-4\" />\n                    Análisis de Forma\n                  </button>\n                </div>\n\n                {/* Content Display */}\n                {activeTab === 'JURIDICAL' && results.juridical && (\n                   <AnalysisDisplay markdown={results.juridical} type=\"JURIDICAL\" />\n                )}\n                {activeTab === 'FORM' && results.form && (\n                   <AnalysisDisplay markdown={results.form} type=\"FORM\" />\n                )}\n\n              </div>\n            ) : (\n              <div className=\"h-full min-h-[500px] bg-slate-50 rounded-xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 p-8 text-center\">\n                 {status === AnalysisStatus.ANALYZING ? (\n                   <div className=\"max-w-xs\">\n                      <div className=\"flex justify-center mb-6 gap-2\">\n                        <div className=\"w-3 h-3 bg-indigo-500 rounded-full animate-bounce\" style={{ animationDelay: '0ms' }}></div>\n                        <div className=\"w-3 h-3 bg-emerald-500 rounded-full animate-bounce\" style={{ animationDelay: '150ms' }}></div>\n                        <div className=\"w-3 h-3 bg-indigo-500 rounded-full animate-bounce\" style={{ animationDelay: '300ms' }}></div>\n                      </div>\n                      <p className=\"font-medium text-slate-600 mb-2\">Revisando Fondo y Forma...</p>\n                      <p className=\"text-sm\">El Abogado IA está detectando riesgos y corrigiendo errores de redacción simultáneamente.</p>\n                   </div>\n                 ) : (\n                   <>\n                    <div className=\"w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6\">\n                      <ScaleIcon className=\"w-10 h-10 text-slate-300\" />\n                    </div>\n                    <p className=\"text-lg font-medium text-slate-500\">El análisis aparecerá aquí</p>\n                    <p className=\"text-sm text-slate-400 mt-2 max-w-sm\">\n                      Obtendrás dos informes detallados: uno sobre la validez legal y otro con correcciones de redacción.\n                    </p>\n                   </>\n                 )}\n              </div>\n            )}\n          </div>\n\n        </div>\n      </main>\n    </div>\n  );\n}\n\nexport default App;"
+            }
+          ]
+        }
+      ]
+    },
+    "createdTimestamp": 1765529431944,
+    "doneTimestamp": 1765529440969
+  }
+]
